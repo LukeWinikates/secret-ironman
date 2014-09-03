@@ -1,10 +1,12 @@
 (ns horus.core-spec
-  (:require [speclj.core :refer :all]))
+  (:require [speclj.core :refer :all])
+  (:use horus.core
+        ring.mock.request))
 
-(defn hello-world []
-  "hello world")
-
-(describe "the world"
-  (it "gets a greeting"
-    (should (hello-world))))
+(describe "the root url"
+  (it "shows a welcome message"
+    (let [response (app (request :get "/"))
+          {status :status body :body} response]
+      (should= 200 status)
+      (should-contain "Horus" body))))
 

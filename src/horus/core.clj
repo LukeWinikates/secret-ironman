@@ -1,5 +1,9 @@
 (ns horus.core
-  (:gen-class))
+  (:use compojure.core)
+  (:require [compojure.route :as route]))
+
+(defroutes app
+  (GET "/" [] "<h1>Horus</h1>"))
 
 (defn -main
   "I don't do a whole lot ... yet."
