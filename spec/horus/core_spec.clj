@@ -10,3 +10,9 @@
       (should= 200 status)
       (should-contain "Horus" body))))
 
+(describe "receiving a call"
+  (it "responds with xml"
+    (let [response (app (request :post "/calls"))
+      { status :status headers :headers } response]
+      (should= "application/xml" (get headers "Content-Type"))
+      (should= 201 status))))

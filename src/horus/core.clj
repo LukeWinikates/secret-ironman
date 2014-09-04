@@ -1,5 +1,6 @@
 (ns horus.core
-  (:use compojure.core)
+  (:use compojure.core
+        ring.util.response)
   (:require [compojure.route :as route]
             [compojure.handler :refer [site]]
             [environ.core :refer [env]]
@@ -7,7 +8,9 @@
   (:gen-class))
 
 (defroutes app
-  (GET "/" [] "<h1>Horus</h1>"))
+  (GET "/" [] "<h1>Horus</h1>")
+  (POST "/calls" []
+       (-> {:status 201} (content-type "application/xml"))))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
