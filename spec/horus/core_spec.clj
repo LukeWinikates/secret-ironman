@@ -1,5 +1,6 @@
 (ns horus.core-spec
-  (:require [speclj.core :refer :all])
+  (:require [speclj.core :refer :all]
+            [horus.calls])
   (:use horus.core
         ring.mock.request))
 
@@ -13,6 +14,7 @@
 (describe "receiving a call"
   (it "responds with xml"
     (let [response (app (request :post "/calls"))
-      { status :status headers :headers } response]
+      { status :status headers :headers body :body } response]
       (should= "application/xml" (get headers "Content-Type"))
+      (should= body (horus.calls/twiml))
       (should= 201 status))))

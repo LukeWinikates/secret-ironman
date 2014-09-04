@@ -2,6 +2,7 @@
   (:use compojure.core
         ring.util.response)
   (:require [compojure.route :as route]
+            [horus.calls]
             [compojure.handler :refer [site]]
             [environ.core :refer [env]]
             [ring.adapter.jetty :as jetty])
@@ -10,7 +11,7 @@
 (defroutes app
   (GET "/" [] "<h1>Horus</h1>")
   (POST "/calls" []
-       (-> {:status 201} (content-type "application/xml"))))
+       (-> {:status 201, :body (horus.calls/twiml)} (content-type "application/xml"))))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]

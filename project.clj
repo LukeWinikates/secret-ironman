@@ -7,6 +7,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [ring "1.3.1"]
                  [compojure "1.1.8"]
+                 [com.twilio.sdk/twilio-java-sdk "3.4.5"]
                  [environ "1.0.0"]]
   :plugins [[speclj "2.9.0"]]
   :test-path "spec/"
