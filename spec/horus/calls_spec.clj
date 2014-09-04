@@ -4,4 +4,6 @@
 
 (describe "(twiml)"
   (it "tells twilio to say something"
-    (should-contain "<Say>" (twiml))))
+    (should-contain "<Say>" (twiml)))
+  (it "includes the ?xml declaration"
+    (should-contain "<?xml" (twiml))))

@@ -4,4 +4,6 @@
 (defn twiml []
   (let [response (TwiMLResponse.)]
     (.append response (Say. "Hello"))
-    (.toXML response)))
+    (str
+      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+      (.toXML response))))
