@@ -7,12 +7,11 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [ring "1.3.1"]
                  [compojure "1.1.8"]
-                 [environ "1.0.0"]
-                 [speclj "2.9.0"]
-                 [ring-mock "0.1.5"]]
+                 [environ "1.0.0"]]
   :plugins [[speclj "2.9.0"]]
   :test-path "spec/"
   :main horus.core
   :target-path "target/%s"
-  :aot [horus.core]
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all}
+             :dev { :dependencies [[speclj "2.9.0"]
+                                   [ring-mock "0.1.5"]]}})
