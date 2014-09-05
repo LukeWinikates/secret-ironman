@@ -11,7 +11,7 @@
 (defroutes app
   (GET "/" [] "<h1>Horus</h1>")
   (POST "/calls" []
-       (-> {:status 201, :body (horus.calls/twiml)} (content-type "application/xml"))))
+       (-> {:status 200, :body (horus.calls/twiml)} (content-type "text/xml; charset=utf-8"))))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]

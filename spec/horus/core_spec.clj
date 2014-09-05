@@ -15,6 +15,6 @@
   (it "responds with xml"
     (let [response (app (request :post "/calls"))
       { status :status headers :headers body :body } response]
-      (should= "application/xml" (get headers "Content-Type"))
+      (should= "text/xml; charset=utf-8" (get headers "Content-Type"))
       (should= body (horus.calls/twiml))
-      (should= 201 status))))
+      (should= 200 status))))
