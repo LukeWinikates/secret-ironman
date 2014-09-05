@@ -10,7 +10,7 @@
                  [com.twilio.sdk/twilio-java-sdk "3.4.5"]
                  [environ "1.0.0"]]
   :plugins [[speclj "2.9.0"]]
-  :test-path "spec/"
+  :test-paths ["spec"]
   :main horus.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
