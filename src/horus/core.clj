@@ -4,12 +4,17 @@
             [compojure.handler :refer [site]]
             [environ.core :refer [env]]
             [horus.calls]
-            [ring.adapter.jetty :as jetty])
+            [ring.adapter.jetty :as jetty]
+            [ring.middleware.logger :as logger])
   (:gen-class))
 
-(defroutes app
+(defroutes app-routes
   (GET "/" [] "<h1>Horus</h1>")
   (POST "/calls" [] horus.calls/resource))
+
+(def app
+  (-> app-routes
+    (logger/wrap-with-logger)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
