@@ -3,14 +3,14 @@
   (:require [compojure.route :as route]
             [compojure.handler :refer [site]]
             [environ.core :refer [env]]
-            [horus.calls]
+            [horus.calls :as calls]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.logger :as logger])
   (:gen-class))
 
 (defroutes app-routes
   (GET "/" [] "<h1>Horus</h1>")
-  (POST "/calls" [] horus.calls/resource))
+  (POST "/calls" [] calls/resource))
 
 (def app
   (-> app-routes
