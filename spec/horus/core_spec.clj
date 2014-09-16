@@ -5,14 +5,14 @@
         ring.mock.request))
 
 (describe "horus.core"
-  (describe "visiting the root url"
+  (describe "GET /"
     (it "shows a welcome message"
       (let [response (app-routes (request :get "/"))
             {status :status body :body} response]
         (should= 200 status)
         (should-contain "Horus" body))))
 
-  (describe "receiving a call"
+  (describe "POST /calls"
     (it "responds with xml"
       (let [response (app-routes (request :post "/calls"))
         { status :status headers :headers body :body } response]
