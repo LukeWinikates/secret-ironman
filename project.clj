@@ -8,6 +8,7 @@
                  [ring "1.3.1"]
                  [compojure "1.1.8"]
                  [com.twilio.sdk/twilio-java-sdk "3.4.5"]
+                 [liberator "0.12.1"]
                  [org.apache.httpcomponents/httpcore "4.1.2"]
                  [ring.middleware.logger "0.5.0"]
                  [environ "1.0.0"]]
