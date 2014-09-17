@@ -17,7 +17,7 @@
   :test-paths ["spec"]
   :main horus.core
   :target-path "target/%s"
-  :aliases { "spec" ["with-profile" "test" "spec"] }
+  :aliases { "spec" ["with-profile" "test" "spec" "-f" "d"] }
   :profiles {:uberjar {:aot :all}
              :dev-deps { :dependencies [[speclj "2.9.0"]
                                         [ring-mock "0.1.5"]]}
