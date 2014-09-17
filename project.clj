@@ -19,6 +19,8 @@
   :target-path "target/%s"
   :aliases { "spec" ["with-profile" "test" "spec" "-f" "d"] }
   :profiles {:uberjar {:aot :all}
+             :test-env {}
+             :dev-env {}
              :dev-deps { :dependencies [[speclj "2.9.0"]
                                         [ring-mock "0.1.5"]]}
              :dev [:dev-deps :dev-env]
