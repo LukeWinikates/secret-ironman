@@ -5,6 +5,7 @@
             [environ.core :refer [env]]
             [horus.calls :as calls]
             [horus.recordings :as recordings]
+            [horus.landing-page :as landing-page]
             [horus.sms-client :as sms]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.logger :as logger])
@@ -13,7 +14,7 @@
 (defn app-routes [deps]
   (let [{sms-client :sms} deps]
     (routes
-      (GET "/" [] "<h1>Horus</h1>")
+      (GET "/" [] landing-page/resource)
       (POST "/calls" [] calls/resource)
       (POST "/recordings" [RecordingUrl Caller] (recordings/resource RecordingUrl Caller sms-client)))))
 
