@@ -25,4 +25,11 @@
     (it "responds with 201 created"
       (let [response (@app (request :post "/recordings"))
             { status :status} response]
-        (should= 201 status)))))
+        (should= 201 status))))
+
+  (describe "GET /signup"
+    (it "shows a signup page"
+      (let [response (@app (request :get "/signup"))
+            {status :status body :body} response]
+        (should= 200 status)
+        (should-contain "Sign Up" body)))))

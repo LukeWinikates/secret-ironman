@@ -1,13 +1,7 @@
 (ns horus.landing-page
-  (:use hiccup.core
-        hiccup.page))
+  (:use horus.layout))
 
 (def resource
-  (html5 [:head
-          [:link { :rel "stylesheet" :href "//bootswatch.com/sandstone/bootstrap.css" }]
-          [:title "Horus | Voice Recordings Sent to your Inbox"]]
-         [:body
-          [:div.container
-          [:div.jumbotron
+  (layout [:div.jumbotron
            [:h1 "Horus"]
-           [:p "A personal dictation assistant that sends voice recordings to your inbox"]]]]))
+           [:p "A personal dictation assistant that sends voice recordings to your inbox"]]))

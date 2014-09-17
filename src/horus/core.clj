@@ -6,6 +6,7 @@
             [horus.calls :as calls]
             [horus.recordings :as recordings]
             [horus.landing-page :as landing-page]
+            [horus.signup-page :as signup-page]
             [horus.sms-client :as sms]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.logger :as logger])
@@ -15,6 +16,7 @@
   (let [{sms-client :sms} deps]
     (routes
       (GET "/" [] landing-page/resource)
+      (GET "/signup" [] signup-page/resource)
       (POST "/calls" [] calls/resource)
       (POST "/recordings" [RecordingUrl Caller] (recordings/resource RecordingUrl Caller sms-client)))))
 
