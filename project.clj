@@ -10,6 +10,8 @@
                  [com.twilio.sdk/twilio-java-sdk "3.4.5"]
                  [liberator "0.12.1"]
                  [org.apache.httpcomponents/httpcore "4.1.2"]
+                 [commons-codec/commons-codec "1.9"]
+                 [ring/ring-anti-forgery "1.0.0"]
                  [ring.middleware.logger "0.5.0"]
                  [environ "1.0.0"]]
   :plugins [[lein-environ "1.0.0"]
