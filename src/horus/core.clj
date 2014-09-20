@@ -11,7 +11,8 @@
             [horus.signup-page :as signup-page]
             [horus.sms-client :as sms]
             [ring.adapter.jetty :as jetty]
-            [ring.middleware.logger :as logger])
+            [ring.middleware.logger :as logger]
+            [ring.middleware.resource :refer [wrap-resource]])
   (:gen-class))
 
 (defn app-routes [deps]
@@ -24,9 +25,10 @@
 
 (def app
   (-> (app-routes { :sms sms/send-message })
-    (wrap-anti-forgery)
+      (wrap-resource "public")
+      (wrap-anti-forgery)
       (wrap-session)
-    (logger/wrap-with-logger)))
+      (logger/wrap-with-logger)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]

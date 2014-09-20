@@ -14,7 +14,9 @@
                  [ring/ring-anti-forgery "1.0.0"]
                  [ring.middleware.logger "0.5.0"]
                  [environ "1.0.0"]]
-  :plugins [[lein-environ "1.0.0"]
+  :bower-dependencies [bootswatch "3.2.0"]
+  :plugins [[lein-bower "0.5.1"]
+            [lein-environ "1.0.0"]
             [speclj "2.9.0"]]
   :test-paths ["spec"]
   :main horus.core
