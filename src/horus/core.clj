@@ -27,3 +27,13 @@
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
     (jetty/run-jetty (site #'app) {:port port :join? false})))
+
+(def ^:dynamic server nil)
+
+(defn restart []
+  (if server
+    (do
+      (.stop server)
+      (.join server)))
+  (require 'horus.core :reload-all)
+  (def server (-main 5000)))
