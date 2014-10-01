@@ -1,9 +1,6 @@
 (ns horus.core
-  (:use compojure.core
-        ring.middleware.session
-        ring.middleware.anti-forgery)
-  (:require [compojure.route :as route]
-            [compojure.handler :refer [site]]
+  (:require [compojure.core :refer :all]
+            [compojure.route :as route]
             [environ.core :refer [env]]
             [horus.calls :as calls]
             [horus.recordings :as recordings]
@@ -11,6 +8,7 @@
             [horus.signup-page :as signup-page]
             [horus.sms-client :as sms]
             [ring.adapter.jetty :as jetty]
+            [ring.middleware.defaults :refer :all]
             [ring.middleware.logger :as logger]
             [ring.middleware.resource :refer [wrap-resource]])
   (:gen-class))
@@ -25,14 +23,12 @@
 
 (def app
   (-> (app-routes { :sms sms/send-message })
-      (wrap-resource "public")
-      (wrap-anti-forgery)
-      (wrap-session)
+      (wrap-defaults site-defaults)
       (logger/wrap-with-logger)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
-    (jetty/run-jetty (site #'app) {:port port :join? false})))
+    (jetty/run-jetty app {:port port :join? false})))
 
 (def ^:dynamic server nil)
 

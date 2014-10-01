@@ -6,6 +6,7 @@
             :url "http://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [ring "1.3.1"]
+                 [ring/ring-defaults "0.1.2"]
                  [compojure "1.1.8"]
                  [com.twilio.sdk/twilio-java-sdk "3.4.5"]
                  [liberator "0.12.1"]
