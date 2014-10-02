@@ -1,6 +1,7 @@
 (ns horus.core-spec
   (:require [speclj.core :refer :all]
             [horus.calls]
+            [ring.middleware.anti-forgery :as anti-forgery]
             [horus.core :refer [app-routes]])
   (:use ring.mock.request))
 
@@ -32,4 +33,11 @@
       (let [response (@app (request :get "/signup"))
             {status :status body :body} response]
         (should= 200 status)
-        (should-contain "Sign Up" body)))))
+        (should-contain "Sign Up" body))))
+
+  (describe "POST /accounts"
+    (it "responds with 201 created"
+      (let [response (@app (assoc (request :post "/accounts") :params { :email "" :phone "" }))
+            {status :status body :body} response]
+        (should= 201 status)
+        (should-contain "Welcome!" body)))))

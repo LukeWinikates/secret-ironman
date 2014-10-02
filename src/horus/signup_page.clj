@@ -14,7 +14,7 @@
 (defn resource []
   (layout [:h1 "Sign Up"]
           [:p "Create a new account"]
-          (form-to {:class "form-horizontal"} [:post "accounts/create"]
+          (form-to {:class "form-horizontal"} [:post "accounts"]
                    (anti-forgery-field)
                    (form-group "email"
                     (text-field {:class "form-control"} "email"))

@@ -8,6 +8,7 @@
 (defresource resource [RecordingUrl Caller send-message]
   :allowed-methods [:post]
   :handle-created (fn [_] RecordingUrl)
+  :handle-exception (fn [ctx] (println ctx))
   :post! (fn [ctx]
            (->
                { "To" Caller
