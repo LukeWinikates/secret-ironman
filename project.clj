@@ -13,6 +13,7 @@
                  [joplin.core "0.1.12"]
                  [joplin.jdbc "0.1.12"]
                  [liberator "0.12.1"]
+                 [lib-noir "0.9.0"]
                  [korma "0.4.0"]
                  [org.apache.httpcomponents/httpcore "4.1.2"]
                  [org.clojure/java.jdbc "0.3.5"]
