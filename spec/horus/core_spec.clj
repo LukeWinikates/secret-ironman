@@ -37,7 +37,7 @@
 
   (describe "POST /accounts"
     (it "responds with 201 created"
-      (let [response (@app (assoc (request :post "/accounts") :params { :email "grover@portlandia.com" :phone "15555551234" }))
+      (let [response (@app (assoc (request :post "/accounts") :params { :email "grover@portlandia.com" :phone "15555551234" :password "shootingstar" }))
             {status :status body :body} response]
         (should= 201 status)
         (should-contain "Welcome!" body)))))
