@@ -1,17 +1,17 @@
 (ns horus.accounts
   (:require [clojure.string :as str]
+            [environ.core :refer [env]]
             [liberator.core :refer [defresource]]
             [korma.db :refer :all]
             [noir.util.crypt :as c]
             [noir.validation :as v]
             [korma.core :refer :all]))
 
-(defdb db-dev
-  (postgres { :db "horus-dev"
-             :naming { :fields #(str/replace % "-" "_") }}))
+(defdb db { :naming { :fields #(str/replace % "-" "_") }
+             :connection-uri (env :database-url)})
 
 (defentity accounts
-  (database db-dev))
+  (database db))
 
 (defn valid? [ctx]
   (let [params (get-in ctx [:request :params])]

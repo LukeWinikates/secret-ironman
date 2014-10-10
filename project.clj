@@ -31,9 +31,12 @@
   :target-path "target/%s"
   :joplin {
            :migrators { :sql-mig "migrations" }
-           :databases { :sql-dev { :type :jdbc :url  "jdbc:postgresql://localhost/horus-dev" }}
-           :environments {:dev [{:db :sql-dev :migrator :sql-mig}] }}
-  ;:ragtime { :database "jdbc:postgresql://localhost/horus-dev" :migrations ragtime.sql.files/migrations}
+           :databases { :sql-prod {:type :jdbc :url #=(eval (str "jdbc:" (System/getenv "DATABASE_URL")))}
+                       :sql-dev {:type :jdbc :url "jdbc:postgresql://localhost/horus-dev" }
+                       :sql-test {:type :jdbc :url "jdbc:postgresql://localhost/horus-test" }}
+           :environments {:dev [{:db :sql-dev :migrator :sql-mig}]
+                          :test [{:db :sql-test :migrator :sql-mig}]
+                          :production [{:db :sql-prod :migrator :sql-mig}] }}
   :aliases { "spec" ["with-profile" "test" "spec" "-f" "d"] }
   :profiles {:uberjar {:aot :all}
              :test-env {}

@@ -2,12 +2,15 @@
  :dev-env
  { :env
   {
+   :horus-use-local-assets "true"
+   :database-url "jdbc:postgresql://localhost/horus-dev"
    :twilio-account "DEV ACCOUNT CREDENTIALS"
    :twilio-number "SMS CAPABLE TWILIO PHONE NUMBER"
    :twilio-auth-token "TWILIO AUTH TOKEN" }}
  :test-env
  { :env
   {
+   :database-url "jdbc:postgresql://localhost/horus-test"
    :twilio-account "TWILIO TEST ACCOUNT ID"
    :twilio-auth-token "TWILIO TEST AUTH TOKEN"
    :test-number "+15555551234"
