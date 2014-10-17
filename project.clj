@@ -22,22 +22,15 @@
                  [ring.middleware.logger "0.5.0"]
                  [environ "1.0.0"]]
   :bower-dependencies [bootswatch "3.2.0"]
-  :plugins [[joplin.lein "0.1.12"]
+  :plugins [
             [lein-bower "0.5.1"]
             [lein-environ "1.0.0"]
             [speclj "2.9.0"]]
   :test-paths ["spec"]
   :main horus.core
   :target-path "target/%s"
-  :joplin {
-           :migrators { :sql-mig "migrations" }
-           :databases { :sql-prod {:type :jdbc :url #=(eval (str "jdbc:" (System/getenv "DATABASE_URL")))}
-                       :sql-dev {:type :jdbc :url "jdbc:postgresql://localhost/horus-dev" }
-                       :sql-test {:type :jdbc :url "jdbc:postgresql://localhost/horus-test" }}
-           :environments {:dev [{:db :sql-dev :migrator :sql-mig}]
-                          :test [{:db :sql-test :migrator :sql-mig}]
-                          :production [{:db :sql-prod :migrator :sql-mig}] }}
-  :aliases { "spec" ["with-profile" "test" "spec" "-f" "d"] }
+  :aliases { "spec" ["with-profile" "test" "spec" "-f" "d"]
+             "migrate" ["run" "-m" "horus.migrator"] }
   :profiles {:uberjar {:aot :all}
              :test-env {}
              :dev-env {}

@@ -1,6 +1,7 @@
 (ns horus.accounts
   (:require [clojure.string :as str]
             [environ.core :refer [env]]
+            [horus.heroku-util :as heroku]
             [liberator.core :refer [defresource]]
             [korma.db :refer :all]
             [noir.util.crypt :as c]
@@ -8,7 +9,7 @@
             [korma.core :refer :all]))
 
 (defdb db { :naming { :fields #(str/replace % "-" "_") }
-             :connection-uri (env :database-url)})
+             :connection-uri (heroku/heroku-jdbc-uri (env :database-url))})
 
 (defentity accounts
   (database db))
