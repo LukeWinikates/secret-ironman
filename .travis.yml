@@ -1,2 +1,7 @@
 language: clojure
 script: lein spec
+addons:
+  postgresql: "9.3"
+before_script:
+  - psql -c 'create database "horus-test";' -U postgres
+  - lein migrate migrate test
